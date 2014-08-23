@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-    
-    <context:component-scan base-package="com.web.jos" />
-    <!-- Saves a locale change using a cookie -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:context="http://www.springframework.org/schema/context"
+	 xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd 
+		http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<security:http auto-config="true">
+		<security:intercept-url pattern="/home*"
+			access="ROLE_USER" />
+		<security:form-login login-page="/login"
+			default-target-url="/home" authentication-failure-url="/loginfailed" />
+		<security:logout logout-success-url="/logout" />
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service
+				data-source-ref="dataSource"
+				users-by-username-query="select username, password, active from users where username=?"
+				authorities-by-username-query="select us.username, ur.authority from users us, user_roles ur 
+        where us.user_id = ur.user_id and us.username =?  " />
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<!-- Saves a locale change using a cookie -->
 	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
 
@@ -36,7 +59,7 @@
 		</property>
 	</bean>
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 
 </beans>

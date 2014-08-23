@@ -3,24 +3,8 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
-	<definition name="base.definition" template="/WEB-INF/view/include/layout.jsp">
-		<put-attribute name="header" value="/WEB-INF/view/include/header.jsp" />
-		<put-attribute name="leftpanel" value="/WEB-INF/view/include/leftpanel.jsp" />
-		<put-attribute name="body" value="" />
-		<put-attribute name="footer" value="/WEB-INF/view/include/footer.jsp" />
-	</definition>
-
-	<definition name="trendHome" extends="base.definition">
-		<put-attribute name="body" value="/WEB-INF/view/trend/home.jsp" />
-	</definition>
-	
-	<definition name="heatMap" template="/WEB-INF/view/trend/heatMap.jsp">
-	</definition>
-	<definition name="trendHeader" template="/WEB-INF/view/trend/trendHeader.jsp">
-	</definition>
-	<definition name="roamingTrend" template="/WEB-INF/view/trend/roamingTrend.jsp">
-	</definition>
-	
 	<definition name="login" template="/index.jsp">
+	</definition>
+	<definition name="home" template="/home.jsp">
 	</definition>
 </tiles-definitions>
