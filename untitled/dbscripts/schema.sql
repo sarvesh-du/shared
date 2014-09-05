@@ -32,24 +32,41 @@ INSERT INTO `users`
 
  
  create table question(
- 	q_id int AUTO_INCREMENT primary key,
+ 	q_id int  primary key,
  	q_text varchar(500) not null unique,
  	q_type smallint,
  	options smallint not null default 4,
  	answer varchar(20) not null
  );
  
- create table options(
- 	o_id int AUTO_INCREMENT primary key,
- 	o_text varchar(100) not null unique
- );
+ insert into question(q_id,q_text,q_type,options,answer)
+ values (1,'Is java platform independent?', 0, 2,'1');
+ 
+ insert into question(q_id,q_text,q_type,options,answer)
+ values (2,'Latest version of java is ?', 0, 4,'2');
+
  
  create table questions_options (
  	q_id int ,
- 	o_id int ,
- 	foreign key (q_id) references question(q_id),
- 	foreign key (o_id) references options(o_id)
+ 	o_no int ,
+ 	o_text varchar(100) not null,
+ 	foreign key (q_id) references question(q_id)
  );
+ 
+ insert into questions_options(q_id,o_no,o_text) 
+ values (1, 1, 'True');
+ 
+  insert into questions_options(q_id,o_no,o_text) 
+ values (1, 2, 'False');
+ 
+  insert into questions_options(q_id,o_no,o_text) 
+ values (2, 1, 'JDK 7');
+ 
+  insert into questions_options(q_id,o_no,o_text) 
+ values (2, 2, 'JDK 8');
+ 
+   insert into questions_options(q_id,o_no,o_text) 
+ values (2, 3, 'JDK 6');
  
  create table test (
  	t_id int AUTO_INCREMENT primary key,
