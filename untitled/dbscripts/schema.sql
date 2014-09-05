@@ -1,7 +1,9 @@
 
+DROP DATABASE IF EXISTS OLE;
 
-insert into user_profile values(1,"Saravesh Kumar","sarvesh.kumar@quovantis.com","12345","ADMIN");
-insert into user_profile values(1,"Jatin Sehgal","jatin.sehgal@quovantis.com","12345");
+create database OLE;
+
+use OLE;
 
 CREATE TABLE users (
   USER_ID int(10) unsigned NOT NULL,
@@ -27,3 +29,41 @@ INSERT INTO `users`
  
  INSERT INTO `user_roles` 
  (`USER_ROLE_ID`, `USER_ID`, `AUTHORITY`) VALUES ('1',  '1', 'ROLE_USER');
+
+ 
+ create table question(
+ 	q_id int AUTO_INCREMENT primary key,
+ 	q_text varchar(500) not null unique,
+ 	q_type smallint,
+ 	options smallint not null default 4,
+ 	answer varchar(20) not null
+ );
+ 
+ create table options(
+ 	o_id int AUTO_INCREMENT primary key,
+ 	o_text varchar(100) not null unique
+ );
+ 
+ create table questions_options (
+ 	q_id int ,
+ 	o_id int ,
+ 	foreign key (q_id) references question(q_id),
+ 	foreign key (o_id) references options(o_id)
+ );
+ 
+ create table test (
+ 	t_id int AUTO_INCREMENT primary key,
+ 	questions smallint not null default 10,
+ 	startdate date not null,
+ 	duedate date not null
+ );
+ 
+ create table test_question(
+ 	t_id int,
+ 	q_id int,
+ 	foreign key (q_id) references question(q_id),
+ 	foreign key (t_id) references test(t_id)
+ )
+ 
+ 
+ 
