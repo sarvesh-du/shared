@@ -1,4 +1,4 @@
 (function() {
-	var app = angular.module("exam-app", ['ngRoute']);
+	var app = angular.module("portal", []);
 
 })();

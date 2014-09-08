@@ -28,11 +28,6 @@ public class LoginController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public ModelAndView home() {
-		return new ModelAndView("home");
-	}
-
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public ModelAndView logout() {
 		return new ModelAndView("login");

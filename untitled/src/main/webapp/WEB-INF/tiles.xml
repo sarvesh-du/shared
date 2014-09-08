@@ -7,4 +7,22 @@
 	</definition>
 	<definition name="home" template="/home.jsp">
 	</definition>
+	<definition name="base.definition" template="/WEB-INF/view/include/layout.jsp">
+		<put-attribute name="navigation"
+			value="/WEB-INF/view/include/navigation.jsp" />
+		<put-attribute name="body" value="" />
+	</definition>
+	<definition name="questions" extends="base.definition">
+		<put-attribute name="body" value="/WEB-INF/view/questions.jsp" />
+	</definition>
+	<definition name="dashboard" extends="base.definition">
+		<put-attribute name="body" value="/WEB-INF/view/dashboard.jsp" />
+	</definition>
+	<definition name="tests" extends="base.definition">
+		<put-attribute name="body" value="/WEB-INF/view/tests.jsp" />
+	</definition>
+	
+	<definition name="mytests" extends="base.definition">
+		<put-attribute name="body" value="/WEB-INF/view/mytests.jsp" />
+	</definition>
 </tiles-definitions>

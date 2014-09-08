@@ -15,7 +15,7 @@
 		<security:intercept-url pattern="/home*"
 			access="ROLE_USER" />
 		<security:form-login login-page="/login"
-			default-target-url="/home" authentication-failure-url="/loginfailed" />
+			default-target-url="/dashboard" authentication-failure-url="/loginfailed" />
 		<security:logout logout-success-url="/logout" />
 	</security:http>
 
